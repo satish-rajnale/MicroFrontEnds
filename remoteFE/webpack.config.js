@@ -45,6 +45,7 @@ module.exports = {
       remotes: {},
       exposes: {
         './Counter': './src/Counter.jsx',
+        './CounterWrapper': './src/CounterWrapper.jsx',
       },
       shared: {
         ...deps,

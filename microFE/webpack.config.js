@@ -44,7 +44,7 @@ module.exports = {
       name: 'microFE',
       filename: 'remoteEntry.js',
       remotes: {
-        remoteFE: 'remoteFE@http://localhost:3030/remoteEntry.js',
+        remote: 'remote@http://localhost:3000/remoteEntry.js',
       },
       exposes: {},
       shared: {
