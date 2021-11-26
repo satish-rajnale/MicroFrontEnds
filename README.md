@@ -4,4 +4,4 @@
 > Microfrontends are sections of your UI, often consisting of dozens of components, that use frameworks like React, Vue, and Angular to render their components. Each microfrontend can be managed by a different team and may be implemented using its own framework.
 
 
-# Core Ideas behind Micro Frontends
+## Core Ideas behind Micro Frontends
