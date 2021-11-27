@@ -59,9 +59,35 @@ export const useClient = () => {
   const logout = useCallback(() => {
     setJWT('');
   }, []);
+
+  const getTodos = useCallback(
+    () =>
+      client
+        .post(
+          '/',
+          {
+            query: 'query { todos }',
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then(
+          ({ data }) =>
+            (
+              data as {
+                data: {
+                  todos: string[];
+                };
+              }
+            ).data.todos
+        ),
+    []
+  );
+
   return {
     JWT,
-
+    getTodos,
     login,
     logout,
   };
