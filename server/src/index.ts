@@ -39,6 +39,11 @@ const resolvers = {
 };
 
 const server = new ApolloServer({
+  cors: {
+    origin: 'http://localhost:8080',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  },
   context: ({ req }) => {
     const ctx: { name: string | null } = { name: null };
     try {
