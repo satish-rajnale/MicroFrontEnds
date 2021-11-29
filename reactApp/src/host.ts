@@ -5,13 +5,12 @@ import axios from 'axios';
 const { useGlobalState, getGlobalState, setGlobalState } = createGlobalState({
   jwtToken: '',
 });
-
-const getJwtToken = () => getGlobalState('jwtToken');
-const setJwtToken = (value: string) => setGlobalState('jwtToken', value);
-const useJwtToken = () => useGlobalState('jwtToken');
+const getJWTToken = () => getGlobalState('jwtToken');
+const setJWTToken = (value: string) => setGlobalState('jwtToken', value);
+const useJWTToken = () => useGlobalState('jwtToken');
 
 const client = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://localhost:3000',
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
@@ -20,8 +19,7 @@ const client = axios.create({
 
 client.interceptors.request.use(
   (config) => {
-    console.log(getJwtToken());
-    config.headers['x-access-token'] = getJwtToken();
+    config.headers['x-access-token'] = getJWTToken();
     return config;
   },
   (error) => {
@@ -29,8 +27,41 @@ client.interceptors.request.use(
   }
 );
 
-export const useClient = () => {
-  const [JWT, setJWT] = useJwtToken();
+client.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  async (err) => {
+    const originalConfig = err.config;
+    if (err.response.status === 401 && !originalConfig._retry) {
+      originalConfig._retry = true;
+      try {
+        const rs = await client.post(
+          '/',
+          {
+            query: 'mutation { refresh }',
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        const { data } = rs.data as {
+          data: {
+            refresh: string;
+          };
+        };
+        setJWTToken(data.refresh);
+        return client(originalConfig);
+      } catch (_error) {
+        return Promise.reject(_error);
+      }
+    }
+    return Promise.reject(err);
+  }
+);
+
+export function useClient() {
+  const [JWT, setJWT] = useJWTToken();
 
   const login = useCallback((name: string, password: string) => {
     client
@@ -56,6 +87,7 @@ export const useClient = () => {
         setJWT(jwtToken);
       });
   }, []);
+
   const logout = useCallback(() => {
     setJWT('');
   }, []);
@@ -91,4 +123,6 @@ export const useClient = () => {
     login,
     logout,
   };
-};
+}
+
+export default client;

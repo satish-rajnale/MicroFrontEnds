@@ -2,32 +2,39 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 //@ts-ignore
 // import CounterWrapper from 'remote/CounterWrapper';
+// const divRef = useRef();
+// useEffect(() => {
+//   CounterWrapper(divRef.current);
+// }, []);
 import { useClient } from './host';
 import './index.scss';
+import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
 
-const App = () => {
+import './index.scss';
+
+const queryClient = new QueryClient();
+
+const TodosApp = () => {
   const { login, logout, JWT, getTodos } = useClient();
 
   const [name, setName] = useState('sally');
   const [password, setPassword] = useState('123');
-  const [todos, setTodos] = useState([]);
 
   const onLogin = useCallback(async () => {
     login(name, password);
   }, [name, password]);
-  const divRef = useRef();
+
+  const { data: todos } = useQuery('todos', getTodos, {
+    initialData: [],
+    enabled: !!JWT,
+  });
 
   const onGetTodos = useCallback(async () => {
-    // queryClient.invalidateQueries('todos');
-    setTodos(await getTodos());
+    queryClient.invalidateQueries('todos');
   }, [getTodos]);
-  // useEffect(() => {
-  //   CounterWrapper(divRef.current);
-  // }, []);
+
   return (
     <div className="mt-10 text-3xl mx-auto max-w-6xl">
-      <div>Name: microFE</div>
-      {/* <div ref={divRef}></div>{' '} */}
       <div className="grid grid-cols-2 gap-5">
         <div>
           {JWT ? (
@@ -59,7 +66,7 @@ const App = () => {
               </button>
             </>
           )}
-        </div>{' '}
+        </div>
         <div>
           {JWT && todos && (
             <>
@@ -83,4 +90,11 @@ const App = () => {
     </div>
   );
 };
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TodosApp />
+  </QueryClientProvider>
+);
+
 ReactDOM.render(<App />, document.getElementById('app'));
