@@ -13,3 +13,6 @@
 
 3. **Establish Team Prefixes**
 - Agree on naming conventions where isolation is not possible yet. Namespace CSS, Events, Local Storage and Cookies to avoid collisions and clarify ownership.
+
+4. **Favor Native Browser Features over Custom APIs**
+- Use Browser Events for communication instead of building a global PubSub system. If you really have to build a cross team API, try keeping it as simple as possible.
