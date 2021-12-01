@@ -16,3 +16,7 @@
 
 4. **Favor Native Browser Features over Custom APIs**
 - Use Browser Events for communication instead of building a global PubSub system. If you really have to build a cross team API, try keeping it as simple as possible.
+
+
+
+Visit <a href="https://micro-frontends.org/">micro-frontends</a> for more information on micro-frontends.
