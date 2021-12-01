@@ -17,6 +17,9 @@
 4. **Favor Native Browser Features over Custom APIs**
 - Use Browser Events for communication instead of building a global PubSub system. If you really have to build a cross team API, try keeping it as simple as possible.
 
+5. **Build a Resilient Site**
+- Your feature should be useful, even if JavaScript failed or hasn’t executed yet. Use Universal Rendering and Progressive Enhancement to improve perceived performance.
+
 
 
 Visit <a href="https://micro-frontends.org/">micro-frontends</a> for more information on micro-frontends.
