@@ -10,3 +10,6 @@
 
 2. **Isolate Team Code**
 - Don’t share a runtime, even if all teams use the same framework. Build independent apps that are self contained. Don’t rely on shared state or global variables.
+
+3. **Establish Team Prefixes**
+- Agree on naming conventions where isolation is not possible yet. Namespace CSS, Events, Local Storage and Cookies to avoid collisions and clarify ownership.
