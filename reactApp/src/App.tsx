@@ -11,6 +11,8 @@ import './index.scss';
 import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
 
 import './index.scss';
+import Header from './Header';
+import Footer from './Footer';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,9 @@ const TodosApp = () => {
 
   return (
     <div className="mt-10 text-3xl mx-auto max-w-6xl">
+      <Header app={{ name: 'Predator' }} />
+      but here the remote app will blow up as it does not inclued a app prop
+      with name= predator on it
       <div className="grid grid-cols-2 gap-5">
         <div>
           {JWT ? (
@@ -87,6 +92,7 @@ const TodosApp = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
