@@ -13,6 +13,7 @@ import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
 import './index.scss';
 import Header from './Header';
 import Footer from './Footer';
+import HomeContent from './HomeContent';
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const TodosApp = () => {
       <Header app={{ name: 'Predator' }} />
       but here the remote app will blow up as it does not inclued a app prop
       with name= predator on it
+      <HomeContent />
       <div className="grid grid-cols-2 gap-5">
         <div>
           {JWT ? (
