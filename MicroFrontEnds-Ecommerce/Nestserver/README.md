@@ -8,15 +8,15 @@ $ # result -> Put your static files in this directory and then delete this file.
 You can have un-authorized routes.
 
 ```
-$ curl http://localhost:4000/unauthorized
+$ curl http://localhost:4000/products
 $ # result -> true
 ```
 
 Trying authorized routes without a JWT will result in a 401.
 
 ```
-$ curl http://localhost:4000/authorized
-$ # result -> {"statusCode":401,"message":"Unauthorized"}                                 
+$ curl http://localhost:4000/cart
+$ # result -> {"statusCode":401,"message":"Unauthorized"}
 ```
 
 Use the `/auth/login` route to login.
