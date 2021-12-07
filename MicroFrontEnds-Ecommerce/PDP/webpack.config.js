@@ -41,10 +41,10 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'reacthostApp',
+      name: 'pdp',
       filename: 'remoteEntry.js',
       remotes: {
-        home: 'microFE@http://localhost:8080/remoteEntry.js',
+        home: 'home@http://localhost:8080/remoteEntry.js',
       },
       exposes: {},
       shared: {

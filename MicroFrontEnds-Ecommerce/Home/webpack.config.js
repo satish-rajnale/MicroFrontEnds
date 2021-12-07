@@ -41,7 +41,7 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'microFE',
+      name: 'home',
       filename: 'remoteEntry.js',
       remotes: {
         remote: 'remote@http://localhost:3000/remoteEntry.js',

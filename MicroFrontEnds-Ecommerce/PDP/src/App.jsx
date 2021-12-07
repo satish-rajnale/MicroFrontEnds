@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-const Header = React.lazy(() => import('home/Header'));
+import Header from 'home/Header';
 // const Footer = React.lazy(() => import('home/Footer'));
 import Footer from 'home/Footer';
 import './index.scss';
 import SafeComponent from './SafeComponent';
+import PDPContent from './PDPContent';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
   const [load, setLoad] = useState(false);
@@ -12,17 +14,19 @@ const App = () => {
     setLoad(true);
   }
   return (
-    <div className="mt-10 text-3xl mx-auto max-w-6xl">
-      {/* <Header app={{ name: 'Älien' }} /> */}
-      {load && (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <Header app={{ name: 'Älien' }} />
-        </React.Suspense>
-      )}
-      <button onClick={importMyHeader}>Load Header</button>
-      <div>Name: reacthostApp</div>
-      <Footer />
-    </div>
+    <Router>
+      <div className="mx-auto max-w-6xl">
+        <Header app={{ name: 'Älien' }} />
+
+        <button onClick={importMyHeader}>Load Header</button>
+        <div>Name: reacthostApp</div>
+        <Routes>
+          <Route path="/product/:id" element={<PDPContent />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
 };
 ReactDOM.render(<App />, document.getElementById('app'));
