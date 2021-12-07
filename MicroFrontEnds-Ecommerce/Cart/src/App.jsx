@@ -8,6 +8,7 @@ import Header from 'home/Header';
 import Footer from 'home/Footer';
 import './index.scss';
 import Login from './Login.jsx';
+import MiniCart from './MiniCart.jsx';
 
 const App = () => {
   // const [currentJwt, setcurrentJwt] = useState(jwt.value);
@@ -23,6 +24,7 @@ const App = () => {
       <div className="my-10">
         <CartContent />
         <Login />
+        <MiniCart />
       </div>
       <Footer />
     </div>

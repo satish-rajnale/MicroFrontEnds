@@ -7,6 +7,7 @@ import './index.scss';
 import SafeComponent from './SafeComponent';
 import PDPContent from './PDPContent';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import 'remixicon/fonts/remixicon.css';
 
 const App = () => {
   const [load, setLoad] = useState(false);
