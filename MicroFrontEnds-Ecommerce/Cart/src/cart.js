@@ -21,3 +21,14 @@ export const login = (username, password) =>
 
       return data.access_token;
     });
+
+export function useLoggedIn() {
+  const [loggedIn, setLoggedIn] = useState(!!jwt.value);
+  useEffect(() => {
+    setLoggedIn(!!jwt.value);
+    return jwt.subscribe((c) => {
+      setLoggedIn(!!jwt.value);
+    });
+  }, []);
+  return loggedIn;
+}
