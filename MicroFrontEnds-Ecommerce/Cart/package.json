@@ -40,6 +40,7 @@
     "react-hooks-global-state": "^1.0.2",
     "react-query": "^3.33.6",
     "remixicon": "^2.5.0",
-    "rxjs": "^7.4.0"
+    "rxjs": "^7.4.0",
+    "source-map-loader": "^3.0.0"
   }
 }

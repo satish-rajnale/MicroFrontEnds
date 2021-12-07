@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { jwt, login } from './cart';
+
+import 'remixicon/fonts/remixicon.css';
+import './index.scss';
 import CartContent from './CartContent';
 import Header from 'home/Header';
 import Footer from 'home/Footer';
 import './index.scss';
+import Login from './Login';
 
 const App = () => {
   // const [currentJwt, setcurrentJwt] = useState(jwt.value);
@@ -14,10 +17,12 @@ const App = () => {
   //   return () => {};
   // }, []);
   return (
-    <div className="mt-10 text-3xl mx-auto max-w-6xl">
+    <div className=" mx-auto max-w-6xl">
       <Header />
-      <div className="mt-10">
+
+      <div className="my-10">
         <CartContent />
+        <Login />
       </div>
       <Footer />
     </div>
