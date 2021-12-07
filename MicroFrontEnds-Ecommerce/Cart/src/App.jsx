@@ -7,7 +7,7 @@ import CartContent from './CartContent';
 import Header from 'home/Header';
 import Footer from 'home/Footer';
 import './index.scss';
-import Login from './Login';
+import Login from './Login.jsx';
 
 const App = () => {
   // const [currentJwt, setcurrentJwt] = useState(jwt.value);

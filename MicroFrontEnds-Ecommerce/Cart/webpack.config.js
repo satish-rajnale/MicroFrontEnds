@@ -10,7 +10,6 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
   },
-  devtool: 'source-map ./src',
   devServer: {
     port: 3001,
     historyApiFallback: true,
@@ -24,7 +23,6 @@ module.exports = {
         resolve: {
           fullySpecified: false,
         },
-        use: ['source-map-loader'],
       },
       {
         test: /\.(css|s[ac]ss)$/i,
@@ -33,12 +31,9 @@ module.exports = {
       {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          'source-map-loader',
-        ],
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
   },
@@ -54,6 +49,7 @@ module.exports = {
       },
       exposes: {
         './cart': './src/cart.js',
+        './Login': './src/Login.jsx',
       },
       shared: {
         ...deps,

@@ -44,7 +44,9 @@ module.exports = {
       name: 'home',
       filename: 'remoteEntry.js',
       remotes: {
-        remote: 'remote@http://localhost:3000/remoteEntry.js',
+        home: 'home@http://localhost:8080/remoteEntry.js',
+        pdp: 'pdp@http://localhost:3000/remoteEntry.js',
+        cart: 'cart@http://localhost:3001/remoteEntry.js',
       },
       exposes: {
         './Header': './src/Header.jsx',
