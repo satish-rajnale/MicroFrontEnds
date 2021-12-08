@@ -7,10 +7,10 @@ export const getProducts = () =>
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     },
-  }).then((res) => {
-    console.log(res);
-    res.json();
-  });
+  }).then((res) => res.json());
+// .then((data) => {
+//   console.log(data);
+// });
 
 export const getProductById = (id) =>
   fetch(`${API_SERVER}/products/${id}`).then((res) => res.json());
