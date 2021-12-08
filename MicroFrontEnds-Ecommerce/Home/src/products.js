@@ -1,7 +1,16 @@
-const API_SERVER = 'http://localhost:8080';
+const API_SERVER = 'http://localhost:4000';
 
 export const getProducts = () =>
-  fetch(`${API_SERVER}/products`).then((res) => res.json());
+  fetch(`${API_SERVER}/products`, {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => {
+    console.log(res);
+    res.json();
+  });
 
 export const getProductById = (id) =>
   fetch(`${API_SERVER}/products/${id}`).then((res) => res.json());

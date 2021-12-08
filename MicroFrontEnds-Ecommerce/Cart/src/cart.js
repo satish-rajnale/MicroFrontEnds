@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
 
-const API_SERVER = 'http://localhost:8080';
+const API_SERVER = 'http://localhost:4000';
 
 export const jwt = new BehaviorSubject(null);
 export const cart = new BehaviorSubject(null);
 
 export const getCart = () =>
   fetch(`${API_SERVER}/cart`, {
+    mode: 'cors',
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt.value}`,
     },
@@ -22,7 +24,9 @@ export const getCart = () =>
 export const addToCart = (id) =>
   fetch(`${API_SERVER}/cart`, {
     method: 'POST',
+    mode: 'cors',
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt.value}`,
     },
@@ -36,7 +40,9 @@ export const addToCart = (id) =>
 export const clearCart = () =>
   fetch(`${API_SERVER}/cart`, {
     method: 'DELETE',
+    mode: 'cors',
     headers: {
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt.value}`,
     },
@@ -49,7 +55,10 @@ export const clearCart = () =>
 export const login = (username, password) =>
   fetch(`${API_SERVER}/auth/login`, {
     method: 'POST',
+    mode: 'cors',
     headers: {
+      'Access-Control-Allow-Origin': '*',
+
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -59,6 +68,7 @@ export const login = (username, password) =>
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log('ssssssssssssssssssssssss', data);
       jwt.next(data.access_token);
       getCart();
       return data.access_token;

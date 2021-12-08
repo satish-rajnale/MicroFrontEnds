@@ -20,6 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.m?js/,
+        exclude: /node_modules/,
         type: 'javascript/auto',
         resolve: {
           fullySpecified: false,
