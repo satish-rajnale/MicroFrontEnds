@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getProducts, currency } from './products';
+//@ts-ignore
 import { addToCart, useLoggedIn } from 'cart/cart';
 
 export default function HomeContent() {
