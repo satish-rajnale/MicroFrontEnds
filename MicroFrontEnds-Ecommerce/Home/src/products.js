@@ -1,4 +1,4 @@
-const API_SERVER = 'http://localhost:4000';
+const API_SERVER = 'http://localhost:8080';
 
 export const getProducts = () =>
   fetch(`${API_SERVER}/products`).then((res) => res.json());
